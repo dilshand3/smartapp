@@ -1,0 +1,19 @@
+@import "material-icons/iconfont/material-icons.css";
+
+:root {
+  --bg-color: #212121;
+  --lightbg-color: #303030;
+  --lighttxt-color: #ececec;
+  --txt-color: #ececec;
+}
+
+body {
+  font-family: ui-sans-serif, -apple-system, system-ui, "Segoe UI", Helvetica,
+    "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  letter-spacing: normal;
+  line-height: normal;
+  font-weight: 500;
+  background-color: var(--bg-color);
+  color: var(--txt-color);
+}
