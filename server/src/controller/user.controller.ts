@@ -90,7 +90,7 @@ const login = async (req: Request<{}, {}, ReqBody>, res: Response<Res>): Promise
 
 const shareUser = async (req: AuthenticatedRequest, res: Response<Res>): Promise<void> => {
     const userId = req.userId;
-    const existedUser = await User.findById(userId).select("-password").populate("urls");
+    const existedUser = await User.findById(userId).select("-password").populate("urls todos");
     if (!existedUser) {
         res.status(404).json({ success: false, message: "User not found" })
         return;

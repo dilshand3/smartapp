@@ -84,4 +84,30 @@ const toggleUrl = async (req: AuthenticatedRequest, res: Response<Res>): Promise
     });
 }
 
-export { createUrl, redirectURL, toggleUrl };
+const deleteUrl = async (req: AuthenticatedRequest, res: Response<Res>): Promise<void> => {
+    const userId = req.userId;
+    const { urlId } = req.body;
+
+    if (!urlId) {
+        res.status(400).json({ success: false, message: "URL ID is required" });
+        return;
+    }
+    const existingUrl = await URL.findById(urlId);
+    if (!existingUrl) {
+        res.status(404).json({ success: false, message: "URL not found" });
+        return;
+    }
+
+    const user = await User.findById(userId);
+    if (!user || !user.urls.includes(urlId)) {
+        res.status(403).json({ success: false, message: "Unauthorized to delete this URL" });
+        return;
+    }
+
+    await URL.findByIdAndDelete(urlId);
+
+    await User.findByIdAndUpdate(userId, { $pull: { urls: urlId } });
+    res.status(200).json({ success: true, message: "URL deleted successfully" });
+}
+
+export { createUrl, redirectURL, toggleUrl,deleteUrl };

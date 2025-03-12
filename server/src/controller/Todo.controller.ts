@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Todo } from "../model/Todo.model";
-
+import { AuthenticatedRequest } from "../middlewares/verifyToken.middleware";
+import { User } from "../model/User.model";
 interface ReqTodos {
     Title: string,
     Todos: string,
@@ -16,8 +17,10 @@ interface deleteTodos {
     Id: string
 }
 
-const createTodo = async (req: Request<{}, {}, ReqTodos>, res: Response<Res>): Promise<void> => {
+const createTodo = async (req: AuthenticatedRequest, res: Response<Res>): Promise<void> => {
     const { Title, Todos } = req.body;
+    const userId = req.userId;
+
     if (!Title || !Todos) {
         res.status(400).json({ success: false, message: "All field required" });
         return;
@@ -31,6 +34,8 @@ const createTodo = async (req: Request<{}, {}, ReqTodos>, res: Response<Res>): P
         res.status(400).json({ success: false, message: "Todo didn't created" });
         return;
     }
+
+    await User.findByIdAndUpdate(userId, { $push: { todos: newTodo._id } });
 
     res.status(200).json({
         success: true,
@@ -88,17 +93,20 @@ const deleteTodo = async (req: Request<deleteTodos>, res: Response<Res>): Promis
     })
 }
 
-const shareAllTodo = async (req: Request<{}, {}, ReqTodos>, res: Response<Res>): Promise<void> => {
-    const allTodo = await Todo.find();
-    if (!allTodo) {
-        res.status(404).json({ success: false, message: "Todo not found", })
+const shareAllTodo = async (req: AuthenticatedRequest, res: Response<Res>): Promise<void> => {
+    const userId = req.userId;
+
+    const user = await User.findById(userId).populate("todos");
+
+    if (!user || !user.todos) {
+        res.status(404).json({ success: false, message: "No todos found for this user" });
         return;
     }
 
     res.status(200).json({
         success: true,
-        message: "Todo shared succesfully",
-        data: allTodo
+        message: "Todos shared successfully",
+        data: user.todos
     });
 }
 
