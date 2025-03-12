@@ -12,6 +12,10 @@ interface Res {
     data?: object
 }
 
+interface deleteTodos {
+    Id: string
+}
+
 const createTodo = async (req: Request<{}, {}, ReqTodos>, res: Response<Res>): Promise<void> => {
     const { Title, Todos } = req.body;
     if (!Title || !Todos) {
@@ -70,5 +74,33 @@ const editTodo = async (req: Request<{ Id: string }, {}, ReqTodos>, res: Respons
     })
 }
 
+const deleteTodo = async (req: Request<deleteTodos>, res: Response<Res>): Promise<void> => {
+    const { Id } = req.body;
+    if (!Id) {
+        res.status(400).json({ success: false, message: "Id required to delete Todo" });
+        return
+    }
 
-export { createTodo, shareSingleTodo, editTodo }
+    await Todo.findByIdAndDelete(Id);
+    res.status(200).json({
+        success: true,
+        message: "Todo deleted succesfully"
+    })
+}
+
+const shareAllTodo = async (req: Request<{}, {}, ReqTodos>, res: Response<Res>): Promise<void> => {
+    const allTodo = await Todo.find();
+    if (!allTodo) {
+        res.status(404).json({ success: false, message: "Todo not found", })
+        return;
+    }
+
+    res.status(200).json({
+        success: true,
+        message: "Todo shared succesfully",
+        data: allTodo
+    });
+}
+
+
+export { createTodo, shareSingleTodo, editTodo, deleteTodo, shareAllTodo }
