@@ -23,14 +23,17 @@ const signup = async (req: Request<{}, {}, ReqBody>, res: Response<Res>): Promis
         return;
     }
 
-    const existedUser = await User.findOne({
-        $or: [{ username }, { email }]
-    });
+    const existedUsername = await User.findOne({ username });
+    if (existedUsername) {
+        res.status(400).json({ success: false, message: "username already exist" })
+        return
+    }
 
-    if (existedUser) {
-        res.status(400).json({ success: false, message: "User already existed" });
-        return;
-    };
+    const existedemail = await User.findOne({ email });
+    if (existedemail) {
+        res.status(400).json({ success: false, message: "email already exist" })
+        return
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -108,4 +111,4 @@ const logout = async (req: Request, res: Response<Res>): Promise<void> => {
     res.status(200).json({ success: true, message: "Logged out successfully" });
 }
 
-export { signup, login, logout,shareUser }
+export { signup, login, logout, shareUser }

@@ -11,7 +11,7 @@ interface Res {
 
 const createUrl = async (req: AuthenticatedRequest, res: Response<Res>): Promise<void> => {
     try {
-        const { originalUrl, shortUrl } = req.body;
+        const { originalUrl } = req.body;
         const userId = req.userId;
 
         const username = await User.findById(userId);
@@ -20,10 +20,11 @@ const createUrl = async (req: AuthenticatedRequest, res: Response<Res>): Promise
             return;
         }
 
-        if (!originalUrl || !shortUrl) {
+        if (!originalUrl) {
             res.status(400).json({ success: false, message: "Original URL is required" });
             return;
         }
+        const shortUrl = Date.now().toString().slice(-6);
 
         const createdUrl = `${req.protocol}://${req.get("host")}/${username.username}/${shortUrl}`;
 
@@ -110,4 +111,4 @@ const deleteUrl = async (req: AuthenticatedRequest, res: Response<Res>): Promise
     res.status(200).json({ success: true, message: "URL deleted successfully" });
 }
 
-export { createUrl, redirectURL, toggleUrl,deleteUrl };
+export { createUrl, redirectURL, toggleUrl, deleteUrl };
