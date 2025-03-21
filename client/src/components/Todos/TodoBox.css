@@ -1,0 +1,40 @@
+.todoListContainer {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.todoItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--lightbg-color);
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.todoTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffcc22;
+    margin: 0;
+}
+
+.readTodoBtn {
+    padding: 8px 16px;
+    background-color: #ffcc22;
+    color: var(--lightbg-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.todoDelete {
+    font-size: 1.9em;
+    margin-left: 10px;
+}

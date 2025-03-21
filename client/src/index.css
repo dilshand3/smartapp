@@ -7,6 +7,11 @@
   --txt-color: #ececec;
 }
 
+*{
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: ui-sans-serif, -apple-system, system-ui, "Segoe UI", Helvetica,
     "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
@@ -16,4 +21,34 @@ body {
   font-weight: 500;
   background-color: var(--bg-color);
   color: var(--txt-color);
+}
+
+input:-webkit-autofill {
+  background-color: var(--lightbg-color) !important; 
+  color: var(--lighttxt-color) !important;
+  -webkit-text-fill-color: var(--lighttxt-color) !important;
+  -webkit-box-shadow: 0 0 0px 1000px var(--lightbg-color) inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-webkit-autofill:focus {
+  background-color: var(--lightbg-color) !important;
+  -webkit-text-fill-color: var(--lighttxt-color) !important;
+  -webkit-box-shadow: 0 0 0px 1000px var(--lightbg-color) inset !important;
+}
+
+.page-title{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.heading{
+  text-align: center;
+}
+
+.tagline{
+  text-align: center;
+  margin-left: 20px;
 }

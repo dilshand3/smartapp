@@ -1,0 +1,33 @@
+.shortener-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    min-width: 400px;
+    width: 70vw;
+    margin: 20px auto;
+    border: 2px solid var( --lightbg-color);
+    padding: 4px 6px 4px 6px;
+    gap: 5px;
+    border-radius: 8px;
+  }
+  
+  .input-row input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .shorten-button {
+    background-color: #ffcc00;
+    color: var(--bg-color);
+    padding: 5px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .shorten-button:hover {
+    background-color: #ffaa00;
+  }
+  

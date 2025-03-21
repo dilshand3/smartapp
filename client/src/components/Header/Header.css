@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.logo {
+    width: 70px;
+}
+
+.logoutbtn {
+    padding: 8px 25px;
+    background-color: var(--lightbg-color);
+    border: none;
+    color: #ffcc33;
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 8px;
+}
+
+@media screen and (max-width : 600px) {
+    .container {
+       width: 100vh;
+       padding: 15px 30px;
+    }
+}

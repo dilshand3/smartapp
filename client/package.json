@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
+    "gsap": "^3.12.7",
     "material-icons": "^1.13.14",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
     "react-redux": "^9.2.0"
   },
   "devDependencies": {
