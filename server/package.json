@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "my first project using typescript ",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js"
@@ -24,6 +24,8 @@
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.9",
     "axios": "^1.8.2",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
   }
 }
