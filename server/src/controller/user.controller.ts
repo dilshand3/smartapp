@@ -107,7 +107,12 @@ const shareUser = async (req: AuthenticatedRequest, res: Response<Res>): Promise
 }
 
 const logout = async (req: Request, res: Response<Res>): Promise<void> => {
-    res.clearCookie("Smart_TOKEN");
+    res.clearCookie("Smart_TOKEN", {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        path: "/"
+    });
     res.status(200).json({ success: true, message: "Logged out successfully" });
 }
 
