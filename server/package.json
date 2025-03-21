@@ -4,8 +4,8 @@
   "description": "my first project using typescript ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./dist/index.js"
+    "build": "tsc",
+    "start": "node dist/index.js"
   },
   "author": "dilshan",
   "license": "ISC",
