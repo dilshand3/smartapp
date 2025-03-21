@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./AuthForm.css";
 import Input from "../Input/Input";
-import googleImg from "/google.png";
 import { useSignupMutation, useLoginMutation } from "../../redux/AuthSlice/AuthSlice";
 import gsap from "gsap";
 import toast from "react-hot-toast";
