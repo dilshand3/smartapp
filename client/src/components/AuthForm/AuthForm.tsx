@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import "./AuthForm.css";
+import "./Authform.css";
 import Input from "../Input/Input";
 import { useSignupMutation, useLoginMutation } from "../../redux/AuthSlice/AuthSlice";
 import gsap from "gsap";
